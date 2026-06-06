@@ -20,7 +20,7 @@ bash ~/storage/shared/push2git_android/push2git.sh
 
 5. IMPORTANT:
 
-## Before first use, select:
+Before first use, select:
 
 9 = First-time Setup (before first use)
 
