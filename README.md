@@ -35,9 +35,13 @@ The setup must be completed before using the application.
 When started, "push2git.sh" provides the following options:
 
 1 = Set Username/Email (before first upload)
+
 2 = Download from Repo
+
 3 = Upload / Replace Repo
+
 9 = First-time Setup (before first use)
+
 0 = Exit
 
 ---
