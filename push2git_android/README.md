@@ -1,123 +1,279 @@
-# GitHub + Termux - Simple Storage Guide
+# push2git_android
 
-## One Time Setup
+## Installation
 
-Bash
+1. Install Termux.
+
+2. Copy the "push2git_android" folder to the root of internal storage.
+
+3. Open Termux and run:
 
 termux-setup-storage
 
-pkg update -y
+(When prompted, allow Termux to access all files on your device storage.)
 
-pkg install git -y
+4. Start push2git:
 
-git config --global user.name "USERNAME"
+bash ~/storage/shared/push2git_android/push2git.sh
 
-git config --global user.email "GITHUB_EMAIL_ADDRESS"
+(The script can be launched from any location in Termux.)
 
+5. IMPORTANT:
+
+Before first use, select:
+
+9 = First-time Setup (before first use)
+
+This step installs Git and prepares the environment.
+
+The setup must be completed before using the application.
+
+---
+
+## Menu
+
+When started, "push2git.sh" provides the following options:
+
+1 = Set Username/Email (before first upload)
+
+2 = Download from Repo
+
+3 = Upload / Replace Repo
+
+9 = First-time Setup (before first use)
+
+0 = Exit
+
+---
+
+## First-time Setup
+
+Select:
+
+9 = First-time Setup
+
+This will:
+
+- Configure Termux storage access
+- Update package lists
+- Install Git
+- Configure Git safe.directory support
+
+This step only needs to be performed once per device.
+
+---
 
 ## Private GitHub Email
 
-Do not use your personal email.
+GitHub allows you to hide your personal email address when creating commits.
 
-Use your GitHub private email:
+To enable this feature:
 
-GitHub → Settings → Emails
+GitHub
+→ Settings
+→ Emails
 
 Enable:
 
-- Keep my email addresses private
+Keep my email addresses private
 
-Use the email shown by GitHub.
+GitHub will provide a private email address similar to:
 
+USERNAME@users.noreply.github.com
 
-## GitHub Token
+or:
 
-GitHub password does not work with Git.
+12345678+USERNAME@users.noreply.github.com
 
-Create a token here:
+You can use this address when selecting:
 
-GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+1 = Set Username/Email
+
+This allows commits to be linked to your GitHub account while keeping your personal email address private.
+
+---
+
+## GitHub Personal Access Token
+
+GitHub passwords cannot be used with Git operations such as:
+
+git push
+
+A GitHub Personal Access Token is required.
+
+To create one:
+
+GitHub
+→ Settings
+→ Developer settings
+→ Personal access tokens
+→ Tokens (classic)
+→ Generate new token
 
 Enable:
 
 - repo
 
-When Git asks for password, paste the token.
+Generate the token and save it somewhere safe.
 
+When GitHub asks for:
 
-## Download a Repository to the Phone
+Username:
 
-Bash
+Enter your GitHub username.
 
-cd ~/storage/shared
+When GitHub asks for:
 
-git clone https://github.com/USERNAME/REPO_NAME.git
+Password:
 
-*Note:
+Paste your GitHub Personal Access Token instead of your GitHub password.
 
-You can choose the destination folder name.
+---
 
-Bash
+## Set Username/Email
 
-git clone https://github.com/USERNAME/REPO_NAME.git FOLDER_NAME
+Select:
 
+1 = Set Username/Email (before first upload)
 
-## Upload / Replace a Repository
+Enter:
 
-Use this when your local folder is the final version and must replace GitHub.
+USERNAME
+GITHUB_EMAIL_ADDRESS
 
-Bash
+Example:
 
-cd ~/storage/shared/FOLDER_NAME
+USERNAME: MyUsername
+GITHUB_EMAIL_ADDRESS: USERNAME@users.noreply.github.com
 
-git init
+These values are stored in Git and will be used when creating commits.
 
-git config --global --add safe.directory '*'
+This step only needs to be performed before your first upload and can be changed at any time.
+
+---
+
+## Download from Repo
+
+Select:
+
+2 = Download from Repo
+
+Enter:
+
+REPO_USERNAME
+REPO_NAME
+
+Example:
+
+REPO_USERNAME: octocat
+REPO_NAME: Hello-World
+
+You will then be asked:
+
+1 = Use repository name as folder
+
+2 = Choose folder name
+
+Option 1
+
+Downloads the repository using its original repository name.
+
+Example:
+
+Hello-World/
+
+Option 2
+
+Allows you to choose your own destination folder name.
+
+Example:
+
+MyProject/
+
+Repositories are downloaded directly into:
+
+Internal Storage
+
+and are immediately accessible from Android file managers and Termux.
+
+---
+
+## Upload / Replace Repo
+
+Select:
+
+3 = Upload / Replace Repo
+
+Enter:
+
+REPO_USERNAME
+REPO_NAME
+FOLDER_NAME
+
+Example:
+
+REPO_USERNAME: MyUsername
+REPO_NAME: MyProject
+FOLDER_NAME: MyProject
+
+The selected folder will be:
+
+- Initialized as a Git repository
+- Committed automatically
+- Connected to the specified GitHub repository
+- Uploaded using a force push
+
+Current behavior:
 
 git add -A
 
 git commit -m "Update"
 
-git branch -M main
-
-git remote remove origin 2>/dev/null
-
-git remote add origin https://github.com/USERNAME/REPO_NAME.git
-
 git push --force origin main
 
+This replaces the contents of the remote repository with the contents of the selected local folder.
 
-## Useful Checks
+---
 
-### Show current folder:
+## Folder Location
 
-Bash
+push2git works directly with folders located in:
 
-pwd
+~/storage/shared/
 
-### Show GitHub repository target:
+Examples:
 
-Bash
+~/storage/shared/MyProject
+~/storage/shared/MyProject2
+~/storage/shared/AnotherProject
 
-git remote -v
+This allows repositories to be managed directly from Android internal storage.
 
-### Show changed files:
-
-Bash
-
-git status
-
+---
 
 ## Notes
 
-This guide uses GitHub as a simple way to publish, update, and share projects and software files.
+This project is designed to simplify GitHub repository management from Android through Termux.
 
-The local folder is considered the final version.
+It provides a simple menu-driven interface for:
 
-Uploading with:
+- Configuring Git
+- Downloading repositories
+- Uploading repositories
+- Replacing repository contents
 
-Bash
+No Git commands need to be entered manually during normal use.
 
-git push --force origin main
+Basic familiarity with GitHub repositories is recommended.
 
-replaces the GitHub repository with the current local folder.
+---
+
+## Credits
+
+Uses:
+
+- Git
+- GitHub
+- Termux
+
+This repository provides a simple Android/Termux workflow for downloading, uploading and managing GitHub repositories directly from an Android device.
