@@ -6,10 +6,10 @@ clear
 echo
 echo "push2git_android"
 echo
-echo "1) Set Username/Email"
+echo "1) Set Username/Email (before first upload)"
 echo "2) Download from Repo"
 echo "3) Upload / Replace Repo"
-echo "9) First-time Setup"
+echo "9) First-time Setup (before first use)"
 echo "0) Exit"
 echo
 
