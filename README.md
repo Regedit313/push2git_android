@@ -16,11 +16,11 @@ termux-setup-storage
 
 bash ~/storage/shared/push2git_android/push2git.sh
 
-(The scripts can be launched from any location in Termux.)
+(The script can be launched from any location in Termux.)
 
 5. IMPORTANT:
 
-Before first use, select:
+## Before first use, select:
 
 9 = First-time Setup (before first use)
 
@@ -35,13 +35,9 @@ The setup must be completed before using the application.
 When started, "push2git.sh" provides the following options:
 
 1 = Set Username/Email (before first upload)
-
 2 = Download from Repo
-
 3 = Upload / Replace Repo
-
 9 = First-time Setup (before first use)
-
 0 = Exit
 
 ---
@@ -63,6 +59,73 @@ This step only needs to be performed once per device.
 
 ---
 
+## Private GitHub Email
+
+GitHub allows you to hide your personal email address when creating commits.
+
+To enable this feature:
+
+GitHub
+→ Settings
+→ Emails
+
+Enable:
+
+Keep my email addresses private
+
+GitHub will provide a private email address similar to:
+
+USERNAME@users.noreply.github.com
+
+or:
+
+12345678+USERNAME@users.noreply.github.com
+
+You can use this address when selecting:
+
+1 = Set Username/Email
+
+This allows commits to be linked to your GitHub account while keeping your personal email address private.
+
+---
+
+## GitHub Personal Access Token
+
+GitHub passwords cannot be used with Git operations such as:
+
+git push
+
+A GitHub Personal Access Token is required.
+
+To create one:
+
+GitHub
+→ Settings
+→ Developer settings
+→ Personal access tokens
+→ Tokens (classic)
+→ Generate new token
+
+Enable:
+
+repo
+
+Generate the token and save it somewhere safe.
+
+When GitHub asks for:
+
+Username:
+
+Enter your GitHub username.
+
+When GitHub asks for:
+
+Password:
+
+Paste your GitHub Personal Access Token instead of your GitHub password.
+
+---
+
 ## Set Username/Email
 
 Select:
@@ -77,7 +140,7 @@ GITHUB_EMAIL_ADDRESS
 Example:
 
 USERNAME: MyUsername
-GITHUB_EMAIL_ADDRESS: myemail@example.com
+GITHUB_EMAIL_ADDRESS: USERNAME@users.noreply.github.com
 
 These values are stored in Git and will be used when creating commits.
 
