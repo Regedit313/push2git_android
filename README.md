@@ -171,6 +171,7 @@ REPO_NAME: Hello-World
 You will then be asked:
 
 1 = Use repository name as folder
+
 2 = Choose folder name
 
 Option 1
@@ -225,7 +226,9 @@ The selected folder will be:
 Current behavior:
 
 git add -A
+
 git commit -m "Update"
+
 git push --force origin main
 
 This replaces the contents of the remote repository with the contents of the selected local folder.
