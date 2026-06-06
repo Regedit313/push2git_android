@@ -112,7 +112,7 @@ GitHub
 
 Enable:
 
-repo
+- repo
 
 Generate the token and save it somewhere safe.
 
