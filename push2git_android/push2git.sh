@@ -41,7 +41,7 @@ case "$choice" in
         echo "Download from Repo"
         echo
 
-        read -p "Enter USERNAME: " username
+        read -p "Enter REPO_USERNAME: " username
         read -p "Enter REPO_NAME: " repo
 
         echo
@@ -70,7 +70,7 @@ case "$choice" in
         echo "Upload / Replace Repo"
         echo
 
-        read -p "Enter USERNAME: " username
+        read -p "Enter REPO_USERNAME: " username
         read -p "Enter REPO_NAME: " repo
         read -p "Enter FOLDER_NAME: " folder
 
