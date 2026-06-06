@@ -1,123 +1,205 @@
-# GitHub + Termux - Simple Storage Guide
+# push2git_android
 
-## One Time Setup
+## Installation
 
-Bash
+1. Install Termux.
+
+2. Copy the "push2git_android" folder to the root of internal storage.
+
+3. Open Termux and run:
 
 termux-setup-storage
 
-pkg update -y
+(When prompted, allow Termux to access all files on your device storage.)
 
-pkg install git -y
+4. Start push2git:
 
-git config --global user.name "USERNAME"
+bash ~/storage/shared/push2git_android/push2git.sh
 
-git config --global user.email "GITHUB_EMAIL_ADDRESS"
+(The scripts can be launched from any location in Termux.)
 
+5. IMPORTANT:
 
-## Private GitHub Email
+Before first use, select:
 
-Do not use your personal email.
+9 = First-time Setup (before first use)
 
-Use your GitHub private email:
+This step installs Git and prepares the environment.
 
-GitHub → Settings → Emails
+The setup must be completed before using the application.
 
-Enable:
+---
 
-- Keep my email addresses private
+## Menu
 
-Use the email shown by GitHub.
+When started, "push2git.sh" provides the following options:
 
+1 = Set Username/Email (before first upload)
+2 = Download from Repo
+3 = Upload / Replace Repo
+9 = First-time Setup (before first use)
+0 = Exit
 
-## GitHub Token
+---
 
-GitHub password does not work with Git.
+## First-time Setup
 
-Create a token here:
+Select:
 
-GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+9 = First-time Setup
 
-Enable:
+This will:
 
-- repo
+- Configure Termux storage access
+- Update package lists
+- Install Git
+- Configure Git safe.directory support
 
-When Git asks for password, paste the token.
+This step only needs to be performed once per device.
 
+---
 
-## Download a Repository to the Phone
+## Set Username/Email
 
-Bash
+Select:
 
-cd ~/storage/shared
+1 = Set Username/Email (before first upload)
 
-git clone https://github.com/USERNAME/REPO_NAME.git
+Enter:
 
-*Note:
+USERNAME
+GITHUB_EMAIL_ADDRESS
 
-You can choose the destination folder name.
+Example:
 
-Bash
+USERNAME: MyUsername
+GITHUB_EMAIL_ADDRESS: myemail@example.com
 
-git clone https://github.com/USERNAME/REPO_NAME.git FOLDER_NAME
+These values are stored in Git and will be used when creating commits.
 
+This step only needs to be performed before your first upload and can be changed at any time.
 
-## Upload / Replace a Repository
+---
 
-Use this when your local folder is the final version and must replace GitHub.
+## Download from Repo
 
-Bash
+Select:
 
-cd ~/storage/shared/FOLDER_NAME
+2 = Download from Repo
 
-git init
+Enter:
 
-git config --global --add safe.directory '*'
+REPO_USERNAME
+REPO_NAME
+
+Example:
+
+REPO_USERNAME: octocat
+REPO_NAME: Hello-World
+
+You will then be asked:
+
+1 = Use repository name as folder
+2 = Choose folder name
+
+Option 1
+
+Downloads the repository using its original repository name.
+
+Example:
+
+Hello-World/
+
+Option 2
+
+Allows you to choose your own destination folder name.
+
+Example:
+
+MyProject/
+
+Repositories are downloaded directly into:
+
+Internal Storage
+
+and are immediately accessible from Android file managers and Termux.
+
+---
+
+## Upload / Replace Repo
+
+Select:
+
+3 = Upload / Replace Repo
+
+Enter:
+
+REPO_USERNAME
+REPO_NAME
+FOLDER_NAME
+
+Example:
+
+REPO_USERNAME: MyUsername
+REPO_NAME: MyProject
+FOLDER_NAME: MyProject
+
+The selected folder will be:
+
+- Initialized as a Git repository
+- Committed automatically
+- Connected to the specified GitHub repository
+- Uploaded using a force push
+
+Current behavior:
 
 git add -A
-
 git commit -m "Update"
-
-git branch -M main
-
-git remote remove origin 2>/dev/null
-
-git remote add origin https://github.com/USERNAME/REPO_NAME.git
-
 git push --force origin main
 
+This replaces the contents of the remote repository with the contents of the selected local folder.
 
-## Useful Checks
+---
 
-### Show current folder:
+## Folder Location
 
-Bash
+push2git works directly with folders located in:
 
-pwd
+~/storage/shared/
 
-### Show GitHub repository target:
+Examples:
 
-Bash
+~/storage/shared/MyProject
+~/storage/shared/MyProject2
+~/storage/shared/AnotherProject
 
-git remote -v
+This allows repositories to be managed directly from Android internal storage.
 
-### Show changed files:
-
-Bash
-
-git status
-
+---
 
 ## Notes
 
-This guide uses GitHub as a simple way to publish, update, and share projects and software files.
+This project is designed to simplify GitHub repository management from Android through Termux.
 
-The local folder is considered the final version.
+It provides a simple menu-driven interface for:
 
-Uploading with:
+- Configuring Git
+- Downloading repositories
+- Uploading repositories
+- Replacing repository contents
 
-Bash
+No Git commands need to be entered manually during normal use.
 
-git push --force origin main
+Basic familiarity with GitHub repositories is recommended.
 
-replaces the GitHub repository with the current local folder.
+---
+
+## Credits
+
+Uses:
+
+- Git
+- GitHub
+- Termux
+
+This repository provides a simple Android/Termux workflow for downloading, uploading and managing GitHub repositories directly from an Android device.
