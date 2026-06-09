@@ -32,7 +32,7 @@ The setup must be completed before using the application.
 
 ## Menu
 
-When started, "push2git.sh" provides the following options:
+When started, push2git.sh provides the following options:
 
 1 = Set Username/Email (before first upload)
 
@@ -56,10 +56,13 @@ This will:
 
 - Configure Termux storage access
 - Update package lists
+- Upgrade installed packages
 - Install Git
 - Configure Git safe.directory support
 
 This step only needs to be performed once per device.
+
+It can safely be run again later if needed.
 
 ---
 
@@ -70,7 +73,9 @@ GitHub allows you to hide your personal email address when creating commits.
 To enable this feature:
 
 GitHub
+
 → Settings
+
 → Emails
 
 Enable:
@@ -104,10 +109,15 @@ A GitHub Personal Access Token is required.
 To create one:
 
 GitHub
+
 → Settings
+
 → Developer settings
+
 → Personal access tokens
+
 → Tokens (classic)
+
 → Generate new token
 
 Enable:
@@ -139,11 +149,13 @@ Select:
 Enter:
 
 USERNAME
+
 GITHUB_EMAIL_ADDRESS
 
 Example:
 
 USERNAME: MyUsername
+
 GITHUB_EMAIL_ADDRESS: USERNAME@users.noreply.github.com
 
 These values are stored in Git and will be used when creating commits.
@@ -161,11 +173,13 @@ Select:
 Enter:
 
 REPO_USERNAME
+
 REPO_NAME
 
 Example:
 
 REPO_USERNAME: octocat
+
 REPO_NAME: Hello-World
 
 You will then be asked:
@@ -174,7 +188,7 @@ You will then be asked:
 
 2 = Choose folder name
 
-Option 1
+### Option 1
 
 Downloads the repository using its original repository name.
 
@@ -182,7 +196,7 @@ Example:
 
 Hello-World/
 
-Option 2
+### Option 2
 
 Allows you to choose your own destination folder name.
 
@@ -190,11 +204,7 @@ Example:
 
 MyProject/
 
-Repositories are downloaded directly into:
-
-Internal Storage
-
-and are immediately accessible from Android file managers and Termux.
+Repositories are downloaded directly into internal storage and are immediately accessible from Android file managers and Termux.
 
 ---
 
@@ -207,13 +217,17 @@ Select:
 Enter:
 
 REPO_USERNAME
+
 REPO_NAME
+
 FOLDER_NAME
 
 Example:
 
 REPO_USERNAME: MyUsername
+
 REPO_NAME: MyProject
+
 FOLDER_NAME: MyProject
 
 The selected folder will be:
@@ -233,6 +247,8 @@ git push --force origin main
 
 This replaces the contents of the remote repository with the contents of the selected local folder.
 
+Use this option carefully because files that exist only on the remote repository may be overwritten.
+
 ---
 
 ## Folder Location
@@ -244,7 +260,9 @@ push2git works directly with folders located in:
 Examples:
 
 ~/storage/shared/MyProject
+
 ~/storage/shared/MyProject2
+
 ~/storage/shared/AnotherProject
 
 This allows repositories to be managed directly from Android internal storage.
@@ -252,6 +270,8 @@ This allows repositories to be managed directly from Android internal storage.
 ---
 
 ## Notes
+
+The required folders and configuration are automatically created during setup.
 
 This project is designed to simplify GitHub repository management from Android through Termux.
 
@@ -266,6 +286,8 @@ No Git commands need to be entered manually during normal use.
 
 Basic familiarity with GitHub repositories is recommended.
 
+A GitHub Personal Access Token is required for repository uploads.
+
 ---
 
 ## Credits
@@ -276,4 +298,4 @@ Uses:
 - GitHub
 - Termux
 
-This repository provides a simple Android/Termux workflow for downloading, uploading and managing GitHub repositories directly from an Android device.
+This repository provides a simple Android/Termux workflow for downloading, uploading, and managing GitHub repositories directly from an Android device.
